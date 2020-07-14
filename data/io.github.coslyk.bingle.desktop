@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Nice Bing Wallpaper
+Comment=Download wallpapers from Bing
+Categories=Utility;
+Exec=nice-bing-wallpaper
+Icon=application-default-icon
+Terminal=false
+Type=Application
