@@ -7,7 +7,7 @@ namespace Bingle {
 
 		public Application () {
 			Object (
-				application_id: "com.github.coslyk.nice-bing-wallpaper",
+				application_id: "io.github.coslyk.bingle",
 				flags: ApplicationFlags.FLAGS_NONE
 			);
 		}
