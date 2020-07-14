@@ -39,8 +39,8 @@ namespace Bingle {
 
                     foreach (var item in images.get_elements ()) {
                         var image = item.get_object();
-                        var name = "Bing_" + image.get_string_member ("fullstartdate");
-                        unowned string copyright = image.get_string_member ("copyright");
+                        var filename = "Bing_" + image.get_string_member ("fullstartdate") + ".jpg";
+                        unowned string description = image.get_string_member ("copyright");
                         string full_url = "https://www.bing.com" + image.get_string_member ("url");
                         string preview_url;
 
@@ -50,7 +50,7 @@ namespace Bingle {
                             preview_url = full_url;
                             error ("Cannot get the preview image for: %s\n", full_url);
                         }
-                        this.image_list.append (new ImageData (name, copyright, preview_url, full_url));
+                        this.image_list.append (new ImageData (filename, description, preview_url, full_url));
                     }
                     
                     if (image_list.length () > 7) {

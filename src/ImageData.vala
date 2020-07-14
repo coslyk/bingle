@@ -3,16 +3,16 @@ namespace Bingle {
     // Information for images
     public class ImageData : GLib.Object {
 
-        public string name { get; construct; }
-        public string copyright { get; construct; }
+        public string filename { get; construct; }
+        public string description { get; construct; }
         public string preview_url { get; construct; }
         public string full_url { get; construct; }
         public Gdk.Pixbuf preview_pixbuf { get; private set; }
 
-        public ImageData (string name, string copyright, string preview_url, string full_url) {
+        public ImageData (string filename, string description, string preview_url, string full_url) {
             Object(
-                name: name,
-                copyright: copyright,
+                filename: filename,
+                description: description,
                 preview_url: preview_url,
                 full_url: full_url
             );

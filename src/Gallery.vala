@@ -40,7 +40,7 @@ namespace Bingle {
 
             image.width_request = 320;
             image.height_request = 180;
-            image.set_tooltip_text (image_data.copyright);
+            image.set_tooltip_text (image_data.description);
             _flowbox.insert (image, -1);
             image.show ();
 
