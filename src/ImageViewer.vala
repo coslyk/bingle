@@ -2,10 +2,14 @@ namespace Bingle {
     
     public class ImageViewer: Gtk.Dialog {
 
+        public const int ACTION_SAVE = 1;
+        public const int ACTION_USE = 2;
+
         public ImageViewer (ImageData image_data) {
             Object (
                 default_width: 1024,
-                default_height: 576
+                default_height: 576,
+                use_header_bar: 1
             );
 
             Gtk.DrawingArea area = new Gtk.DrawingArea ();
@@ -13,11 +17,20 @@ namespace Bingle {
             get_content_area ().add (area);
             area.show ();
 
+            // Headerbar
+            unowned Gtk.HeaderBar headerbar = (Gtk.HeaderBar) get_header_bar ();
+            headerbar.title = image_data.name;
+            int img_width = image_data.preview_pixbuf.width;
+            int img_height = image_data.preview_pixbuf.height;
+            headerbar.subtitle = @"$(img_width)x$(img_height)";
+
+            add_button("Use", ACTION_USE);
+            add_button("Save", ACTION_SAVE);
+
+            // Paint image
             area.draw.connect ((obj, cr) => {
-                double img_width = image_data.preview_pixbuf.width;
-                double img_height = image_data.preview_pixbuf.height;
-                int width = get_content_area ().get_allocated_width ();
-                int height = get_content_area ().get_allocated_height ();
+                double width = get_content_area ().get_allocated_width ();
+                double height = get_content_area ().get_allocated_height ();
 
                 // Scale
                 double width_ratio = width / img_width;
