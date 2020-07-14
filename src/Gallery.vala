@@ -46,7 +46,7 @@ namespace Bingle {
 
             // Update image
             image_data.notify["preview-pixbuf"].connect ((s, p) => {
-                image.pixbuf = image_data.preview_pixbuf.scale_simple(320, 180, Gdk.InterpType.BILINEAR);
+                image.pixbuf = image_data.preview_pixbuf;
             });
         }
     }

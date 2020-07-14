@@ -39,10 +39,18 @@ namespace Bingle {
 
                     foreach (var item in images.get_elements ()) {
                         var image = item.get_object();
-                        var image_name = "Bing_" + image.get_string_member ("fullstartdate");
-                        var image_url = "https://www.bing.com" + image.get_string_member ("url");
-                        unowned string image_copyright = image.get_string_member ("copyright");
-                        this.image_list.append (new ImageData (image_name, image_url, image_copyright));
+                        var name = "Bing_" + image.get_string_member ("fullstartdate");
+                        unowned string copyright = image.get_string_member ("copyright");
+                        string full_url = "https://www.bing.com" + image.get_string_member ("url");
+                        string preview_url;
+
+                        try {
+                            preview_url = /(\d+x\d+)/.replace (full_url, -1, 0, "320x180");
+                        } catch (RegexError e) {
+                            preview_url = full_url;
+                            error ("Cannot get the preview image for: %s\n", full_url);
+                        }
+                        this.image_list.append (new ImageData (name, copyright, preview_url, full_url));
                     }
                     
                     if (image_list.length () > 7) {
