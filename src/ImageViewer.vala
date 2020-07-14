@@ -24,8 +24,9 @@ namespace Bingle {
             int img_height = image_data.preview_pixbuf.height;
             headerbar.subtitle = @"$(img_width)x$(img_height)";
 
-            add_button("Use", ACTION_USE);
-            add_button("Save", ACTION_SAVE);
+            add_button ("Use", ACTION_USE);
+            add_button ("Save", ACTION_SAVE);
+            set_default_response (ACTION_USE);
 
             // Paint image
             area.draw.connect ((obj, cr) => {
