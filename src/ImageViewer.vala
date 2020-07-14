@@ -43,12 +43,10 @@ namespace Bingle {
                 int off_y = (int) (height - img_height * scale_xy) / 2;
 
                 // Paint
-                cr.save ();
                 cr.translate (off_x, off_y);
                 cr.scale (scale_xy, scale_xy);
                 Gdk.cairo_set_source_pixbuf (cr, image_data.preview_pixbuf, 0, 0);
                 cr.paint ();
-                cr.restore ();
 
                 return false;
             });
