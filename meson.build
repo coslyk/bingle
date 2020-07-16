@@ -1,7 +1,17 @@
-# project name and programming language
-project('io.github.coslyk.bingle', 'vala', 'c')
+# Project name and programming language
+project('io.github.coslyk.bingle', 'vala', 'c', version: '0.1')
 
-# Create a new executable, list the files we want to compile, list the dependencies we need, and install
+# Import Meson modules
+gnome = import('gnome')
+
+# Compile resource files
+asresources = gnome.compile_resources(
+    'as-resources', join_paths('data', 'app.gresource.xml'),
+    source_dir: 'data',
+    c_name: 'as'
+)
+
+# Create a new executable, list the files we want to compile, list the dependencies we need
 executable(
     meson.project_name(),
     'src/Application.vala',
@@ -10,6 +20,7 @@ executable(
     'src/ImageData.vala',
     'src/ImageViewer.vala',
     'src/MainWindow.vala',
+    asresources,
     dependencies: [
         dependency('gtk+-3.0'),
         dependency('libsoup-2.4'),

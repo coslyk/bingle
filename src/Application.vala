@@ -13,8 +13,20 @@ namespace Bingle {
 		}
 		
 		protected override void activate () {
+			
+			// Create actions
+			var quit_action = new SimpleAction ("quit", null);
+			quit_action.activate.connect (() => { this.quit ();});
+			this.add_action (quit_action);
+
+			// Set menu
+			var menu = new Menu ();
+            menu.append ("About", "app.about");
+			menu.append ("Quit", "app.quit");
+			this.app_menu = menu;
+
 			var main_window = new MainWindow(this);
-			main_window.show_all ();
+			main_window.show ();
 		}
 		
 		public static int main (string[] args) {
