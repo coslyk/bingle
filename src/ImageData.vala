@@ -7,6 +7,7 @@ namespace Bingle {
         public string description { get; construct; }
         public string preview_url { get; construct; }
         public string full_url { get; construct; }
+        public bool is_local { get; construct; }
         public Gdk.Pixbuf preview_pixbuf { get; private set; }
 
         public ImageData (string filename, string description, string preview_url, string full_url) {
@@ -14,11 +15,30 @@ namespace Bingle {
                 filename: filename,
                 description: description,
                 preview_url: preview_url,
-                full_url: full_url
+                full_url: full_url,
+                is_local: false
+            );
+        }
+
+        public ImageData.from_local (string filepath) {
+            Object (
+                filename: File.new_for_path (filepath).get_basename (),
+                full_url: filepath,
+                is_local: true
             );
         }
 
         construct {
+            // Local file
+            if (this.is_local) {
+                try {
+                    this.preview_pixbuf = new Gdk.Pixbuf.from_file_at_scale (full_url, 320, 180, false);
+                } catch (Error e) {
+                    warning ("%s\n", e.message);
+                }
+
+                return;
+            }
 
             // Download preview image
             var msg = new Soup.Message ("GET", preview_url);

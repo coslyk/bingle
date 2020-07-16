@@ -5,6 +5,9 @@ namespace Bingle {
 		// Global network session
 		public static Soup.Session network_session = new Soup.Session();
 
+		// Wallpapers directory
+		public static string storage_path = Environment.get_user_special_dir (UserDirectory.PICTURES) + "/Bingle";
+
 		public Application () {
 			Object (
 				application_id: "io.github.coslyk.bingle",

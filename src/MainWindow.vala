@@ -2,7 +2,8 @@
 namespace Bingle {
     public class MainWindow : Gtk.ApplicationWindow {
 
-        private BingProvider _api = new BingProvider ();
+        private BingProvider _bing_provider = new BingProvider ();
+        private LocalProvider _local_provider = new LocalProvider ();
 
         public MainWindow(Gtk.Application application) {
             Object(
@@ -27,9 +28,9 @@ namespace Bingle {
             stack.add_titled (online_gallery, "online", "Online");
             online_gallery.show ();
 
-            var page2 = new Gtk.Frame (null);
-            stack.add_titled (page2, "saved", "Saved");
-            page2.show ();
+            var local_gallery = new Gallery ();
+            stack.add_titled (local_gallery, "saved", "Saved");
+            local_gallery.show ();
 
             add (stack);
             stack.show ();
@@ -45,9 +46,17 @@ namespace Bingle {
             set_titlebar (headerbar);
             headerbar.show ();
             
-            _api.finished.connect ((obj) => {
+            // Load wallpapers from Bing
+            _bing_provider.finished.connect ((obj) => {
                 foreach (var image_data in obj.image_list) {
                     online_gallery.add_image (image_data);
+                }
+            });
+
+            // Load saved wallpapers
+            _local_provider.finished.connect ((obj) => {
+                foreach (var image_data in obj.image_list) {
+                    local_gallery.add_image (image_data);
                 }
             });
 

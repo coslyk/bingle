@@ -1,10 +1,14 @@
 namespace Bingle {
 
-    // API Object
-    public class BingProvider : GLib.Object {
+    public abstract class Provider : Object {
 
         public signal void finished();
         public List<ImageData> image_list = new List<ImageData>();
+
+    }
+
+    // Wallpaper from Bing
+    public class BingProvider : Provider {
         
         public BingProvider() {
             Object ();
@@ -60,6 +64,46 @@ namespace Bingle {
                 catch (Error e) {
                     error ("Unable to parse the response.");
                 }
+            }
+        }
+    }
+
+    public class LocalProvider : Provider {
+
+        construct {
+            list_images.begin ((obj, res) => {
+                list_images.end (res);
+                finished ();
+            });
+        }
+
+        // List image files
+        private async void list_images () {
+
+            var dir = File.new_for_path (Application.storage_path);
+            try {
+                if (!dir.query_exists ()) {
+                    dir.make_directory ();
+                }
+
+                // Scan files
+                var enumerator = yield dir.enumerate_children_async (FileAttribute.STANDARD_NAME, 0);
+                while (true) {
+                    var files = yield enumerator.next_files_async (10);
+                    if (files == null) {
+                        break;
+                    }
+
+                    foreach (var info in files) {
+                        if (info.get_file_type () == FileType.REGULAR) {
+                            var filepath = Application.storage_path + "/" + info.get_name ();
+                            var image_data = new ImageData.from_local (filepath);
+                            this.image_list.append ((owned) image_data);
+                        }
+                    }
+                }
+            } catch (Error e) {
+                warning ("%s\n", e.message);
             }
         }
     }
