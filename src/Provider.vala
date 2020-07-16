@@ -1,12 +1,12 @@
 namespace Bingle {
 
     // API Object
-    public class BingAPI : GLib.Object {
+    public class BingProvider : GLib.Object {
 
         public signal void finished();
         public List<ImageData> image_list = new List<ImageData>();
         
-        public BingAPI() {
+        public BingProvider() {
             Object ();
         }
 

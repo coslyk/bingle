@@ -2,7 +2,7 @@
 namespace Bingle {
     public class MainWindow : Gtk.ApplicationWindow {
 
-        private BingAPI _api = new BingAPI ();
+        private BingProvider _api = new BingProvider ();
 
         public MainWindow(Gtk.Application application) {
             Object(
