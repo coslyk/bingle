@@ -60,10 +60,13 @@ namespace Bingle {
                 }
             });
 
-            online_gallery.item_selected.connect ((obj, image_data) => {
-                ImageViewer viewer = new ImageViewer (image_data);
-                viewer.run ();
-            });
+            online_gallery.item_selected.connect (on_gallery_item_selected);
+            local_gallery.item_selected.connect (on_gallery_item_selected);
+        }
+
+        private void on_gallery_item_selected (Gallery obj, ImageData image_data) {
+            ImageViewer viewer = new ImageViewer (image_data);
+            viewer.run ();
         }
     }
 }

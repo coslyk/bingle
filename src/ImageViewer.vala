@@ -29,23 +29,44 @@ namespace Bingle {
             headerbar.title = image_data.filename;
 
             add_button ("Use", ACTION_USE);
-            add_button ("Save", ACTION_SAVE);
             set_default_response (ACTION_USE);
 
-            // Download full image
-            Soup.Message msg = new Soup.Message ("GET", image_data.full_url);
-            Application.network_session.queue_message (msg, (sess, mess) => {
-                var stream = new MemoryInputStream.from_data (mess.response_body.data);
+            if (image_data.is_local) {
+                // Open local image
                 try {
-                    _full_pixbuf = new Gdk.Pixbuf.from_stream (stream);
+                    _full_pixbuf = new Gdk.Pixbuf.from_file (image_data.full_url);
+                    queue_draw ();
+
+                    // Set subtitle
                     int img_width = _full_pixbuf.width;
                     int img_height = _full_pixbuf.height;
                     headerbar.subtitle = @"$(img_width)x$(img_height)";
-                    queue_draw ();
-                } catch (Error e) {
-                    error ("Cannot load image.\n");
                 }
-            });
+                catch (Error e) {
+                    warning ("%s\n", e.message);
+                    return;
+                }
+            } else {
+                // Download full image
+                add_button ("Save", ACTION_SAVE);
+                Soup.Message msg = new Soup.Message ("GET", image_data.full_url);
+                Application.network_session.queue_message (msg, (sess, mess) => {
+                    var stream = new MemoryInputStream.from_data (mess.response_body.data);
+                    try {
+                        _full_pixbuf = new Gdk.Pixbuf.from_stream (stream);
+                        queue_draw ();
+
+                        // Set subtitle
+                        int img_width = _full_pixbuf.width;
+                        int img_height = _full_pixbuf.height;
+                        headerbar.subtitle = @"$(img_width)x$(img_height)";
+                    }
+                    catch (Error e) {
+                        warning ("%s\n", e.message);
+                        return;
+                    }
+                });
+            }
 
             // Paint image
             area.draw.connect ((obj, cr) => {
