@@ -60,13 +60,21 @@ namespace Bingle {
                 }
             });
 
-            online_gallery.item_selected.connect (on_gallery_item_selected);
-            local_gallery.item_selected.connect (on_gallery_item_selected);
-        }
+            online_gallery.item_selected.connect ((obj, image_data) => {
+                bool originally_is_local = image_data.is_local;
+                ImageViewer viewer = new ImageViewer (image_data);
+                viewer.transient_for = this;
+                viewer.run ();
 
-        private void on_gallery_item_selected (Gallery obj, ImageData image_data) {
-            ImageViewer viewer = new ImageViewer (image_data);
-            viewer.run ();
+                // Image has been saved?
+                if (!originally_is_local && image_data.is_local) {
+                    local_gallery.add_image (image_data);
+                }
+            });
+            local_gallery.item_selected.connect ((obj, image_data) => {
+                ImageViewer viewer = new ImageViewer (image_data);
+                viewer.run ();
+            });
         }
     }
 }

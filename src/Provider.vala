@@ -25,7 +25,7 @@ namespace Bingle {
         private void on_parse_json(Soup.Session session, Soup.Message msg) {
             if (msg.status_code != 200) {
                 // Fails to get the list
-                error ("Fails to get wallpaper list.");
+                warning ("Fails to get wallpaper list.");
             }
             else {
                 // Get wallpaper of previous week

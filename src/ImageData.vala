@@ -6,8 +6,8 @@ namespace Bingle {
         public string filename { get; construct; }
         public string description { get; construct; }
         public string preview_url { get; construct; }
-        public string full_url { get; construct; }
-        public bool is_local { get; construct; }
+        public string full_url { get; set construct; }
+        public bool is_local { get; set construct; }
         public Gdk.Pixbuf preview_pixbuf { get; private set; }
 
         public ImageData (string filename, string description, string preview_url, string full_url) {
@@ -29,6 +29,14 @@ namespace Bingle {
         }
 
         construct {
+            // Check if the same image is already downloaded
+            if (!this.is_local) {
+                var file = File.new_for_path (Application.storage_path + "/" + this.filename);
+                if (file.query_exists ()) {
+                    convert_to_local ();
+                }
+            }
+
             // Local file
             if (this.is_local) {
                 try {
@@ -58,6 +66,15 @@ namespace Bingle {
                     error ("Cannot load image.\n");
                 }
             });
+        }
+
+        // Convert ImageData to local after image is saved
+        public void convert_to_local () {
+
+            return_if_fail (!is_local);
+
+            this.is_local = true;
+            this.full_url = Application.storage_path + "/" + this.filename;
         }
     }
 }

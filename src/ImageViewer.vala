@@ -68,6 +68,22 @@ namespace Bingle {
                 });
             }
 
+            // Handle save
+            this.response.connect ((id) => {
+                switch (id) {
+                    case ACTION_SAVE:
+                    save_image ();
+                    close ();
+                    break;
+
+                    case Gtk.ResponseType.DELETE_EVENT:
+                    close ();
+                    break;
+
+                    default: break;
+                }
+            });
+
             // Paint image
             area.draw.connect ((obj, cr) => {
                 // Do not paint if full image is not downloaded
@@ -97,6 +113,19 @@ namespace Bingle {
 
                 return false;
             });
+        }
+
+        private void save_image () {
+
+            return_if_fail (!image_data.is_local);
+            
+            string filepath = Application.storage_path + "/" + image_data.filename;
+            try {
+                _full_pixbuf.save (filepath, "jpeg");
+                image_data.convert_to_local ();
+            } catch (Error e) {
+                warning ("%s\n", e.message);
+            }
         }
     }
 }
