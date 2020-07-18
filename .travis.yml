@@ -6,8 +6,26 @@ dist: xenial
 install:
  - sudo apt-get update
  - sudo apt-get install -y -t xenial-backports meson
- - sudo apt-get install libgtk-3-dev libjson-glib-dev libsoup2.4-dev valac
+ - sudo apt-get install curl desktop-file-utils libgtk-3-dev libjson-glib-dev libsoup2.4-dev valac
 
 script:
-  - meson build
+  - meson build --prefix=/usr
   - ninja -C build
+
+before_deploy:
+  - curl -Lo pkg2appimage 'https://raw.githubusercontent.com/AppImage/pkg2appimage/master/pkg2appimage'
+  - chmod +x pkg2appimage
+  - DESTDIR=. ninja -C build install
+  - ./pkg2appimage appimage.yml
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: A90izh3xntl6UoTQuDJJj3CIojoj4cmMv8nFVUe5HBGjrKASnp8ksgFRbMv2LW4tS24oUMoI3ZgmDK9DsKVt22Md22Ovppy+L+k7PRE9jDQFLVEMX2zGuZfuyXl7GBh3R/NkkBELBH1fLWiLMFbYmBwyb+8DbBj1ryvAcznowQxlVTnB39Q7xsyxoe/vKsGM30qAu0c2A4hl5c9eaM6kSLKPybZEtF+Y7YuCTt1PupV3y6DsaMn8FO5vyWrvw599FH424Q5qKM0VSMzFylP7SBo+MrvOOON3T71fT9qlUw7rlkBwmlpR/DvaZXkh8wBDU1MJ0DVSAUZFrycXTGzFHB8fZZ3IddF38dC39xVoAyG5nCO1RzyQQfbofozmBJ6iHSb7hysBtTV5whhmBmtKsesZxSHO7FP8HEmJ0v4bTnJLLrTdhtRVu2KOYn+13Us0vwHK+lIlPfyq6Xuj9yo6M1s8VrPfOOZOepNdF+ayY31GFkqr0UCUcWoviaAk//bdHhWJjusibv+EPfQtARCsqUsRhYfo5+N26QVLkMlbvutId7LIu5V2dLMydwdBEDWCOoRWBt17TRdkIHRpl9pEP9+g2eRakYcPa14K2ud6+LKWJd/PuS7Cd7oEt4vCxzL12yoXeB8bTw/ah44P0nNTbyQj/ILoNDMMnvnW//aokO8=
+  file:
+    - out/*.AppImage
+  file_glob: true
+  on:
+    repo: coslyk/bingle
+    tags: true
