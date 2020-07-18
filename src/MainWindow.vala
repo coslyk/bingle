@@ -62,9 +62,7 @@ namespace Bingle {
 
             online_gallery.item_selected.connect ((obj, image_data) => {
                 bool originally_is_local = image_data.is_local;
-                ImageViewer viewer = new ImageViewer (image_data);
-                viewer.transient_for = this;
-                viewer.run ();
+                ImageViewer.present_viewer (this, image_data);
 
                 // Image has been saved?
                 if (!originally_is_local && image_data.is_local) {
@@ -72,8 +70,7 @@ namespace Bingle {
                 }
             });
             local_gallery.item_selected.connect ((obj, image_data) => {
-                ImageViewer viewer = new ImageViewer (image_data);
-                viewer.run ();
+                ImageViewer.present_viewer (this, image_data);
             });
         }
     }
