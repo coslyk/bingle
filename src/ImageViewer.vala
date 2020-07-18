@@ -125,7 +125,8 @@ namespace Bingle {
                 _save_button.show ();
                 Soup.Message msg = new Soup.Message ("GET", image_data.full_url);
                 Application.network_session.queue_message (msg, (sess, mess) => {
-                    var stream = new MemoryInputStream.from_data (mess.response_body.data);
+                    var bytes = Bytes.new_with_owner (mess.response_body.data, mess);
+                    var stream = new MemoryInputStream.from_bytes (bytes);
                     try {
                         _full_pixbuf = new Gdk.Pixbuf.from_stream (stream);
                         queue_draw ();

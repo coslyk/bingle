@@ -52,7 +52,8 @@ namespace Bingle {
             // Download preview image
             var msg = new Soup.Message ("GET", preview_url);
             Application.network_session.queue_message (msg, (sess, mess) => {
-                var stream = new MemoryInputStream.from_data (mess.response_body.data);
+                var bytes = Bytes.new_with_owner (mess.response_body.data, mess);
+                var stream = new MemoryInputStream.from_bytes (bytes);
                 try {
                     var pixbuf = new Gdk.Pixbuf.from_stream (stream);
 
