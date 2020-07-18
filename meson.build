@@ -1,6 +1,12 @@
 # Project name and programming language
 project('io.github.coslyk.bingle', 'vala', 'c', version: '0.1')
 
+# Import the translations module
+i18n = import('i18n')
+
+# Set our translation domain
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
+
 # Import Meson modules
 gnome = import('gnome')
 
@@ -47,3 +53,6 @@ install_data(
     join_paths('data', meson.project_name() + '.appdata.xml'),
     install_dir: join_paths(get_option('datadir'), 'metainfo')
 )
+
+# Translation files
+subdir('po')

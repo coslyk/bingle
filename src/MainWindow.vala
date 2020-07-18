@@ -25,11 +25,11 @@ namespace Bingle {
             var stack = new Gtk.Stack ();
 
             var online_gallery = new Gallery ();
-            stack.add_titled (online_gallery, "online", "Online");
+            stack.add_titled (online_gallery, "online", _("Online"));
             online_gallery.show ();
 
             var local_gallery = new Gallery ();
-            stack.add_titled (local_gallery, "saved", "Saved");
+            stack.add_titled (local_gallery, "saved", _("Saved"));
             local_gallery.show ();
 
             add (stack);

@@ -34,8 +34,8 @@ namespace Bingle {
 
             // Set menu
             var menu = new Menu ();
-            menu.append ("About", "app.about");
-            menu.append ("Quit", "app.quit");
+            menu.append (_("About"), "app.about");
+            menu.append (_("Quit"), "app.quit");
             this.app_menu = menu;
 
             _main_window = new MainWindow(this);
@@ -48,7 +48,7 @@ namespace Bingle {
                 try {
                     _about_dialog = new Gtk.AboutDialog () {
                         authors = new string[] { "coslyk", null },
-                        comments = "A simple wallpaper downloader",
+                        comments = _("A simple wallpaper downloader"),
                         copyright = "2020 coslyk",
                         license_type = Gtk.License.MIT_X11,
                         logo = new Gdk.Pixbuf.from_resource ("/io/github/coslyk/bingle/logo.png"),

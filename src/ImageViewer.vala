@@ -25,8 +25,8 @@ namespace Bingle {
             get_content_area ().add (area);
             area.show ();
 
-            add_button ("Use", ACTION_USE);
-            _save_button = add_button ("Save", ACTION_SAVE);
+            add_button (_("Use"), ACTION_USE);
+            _save_button = add_button (_("Save"), ACTION_SAVE);
             set_default_response (ACTION_USE);
 
             this.delete_event.connect ((event) => {
@@ -40,14 +40,14 @@ namespace Bingle {
                 switch (id) {
                     case ACTION_SAVE:
                     _image_data.save_full_image (_full_pixbuf);
-                    headerbar.subtitle += " - saved";
+                    headerbar.subtitle += _(" - saved");
                     _save_button.hide ();
                     break;
 
                     case ACTION_USE:
                     if (!_image_data.is_local) {
                         _image_data.save_full_image (_full_pixbuf);
-                        headerbar.subtitle += " - saved";
+                        headerbar.subtitle += _(" - saved");
                         _save_button.hide ();
                     }
                     DesktopService.set_wallpaper (_image_data.full_url);
@@ -114,7 +114,7 @@ namespace Bingle {
                     // Set subtitle
                     int img_width = _full_pixbuf.width;
                     int img_height = _full_pixbuf.height;
-                    headerbar.subtitle = @"$(img_width)x$(img_height) - saved";
+                    headerbar.subtitle = @"$(img_width)x$(img_height)" +  _("- saved");
                 }
                 catch (Error e) {
                     warning ("%s\n", e.message);
