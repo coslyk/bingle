@@ -33,7 +33,8 @@ namespace Bingle {
             if (!this.is_local) {
                 var file = File.new_for_path (Application.storage_path + "/" + this.filename);
                 if (file.query_exists ()) {
-                    convert_to_local ();
+                    this.is_local = true;
+                    this.full_url = Application.storage_path + "/" + this.filename;
                 }
             }
 
@@ -68,13 +69,19 @@ namespace Bingle {
             });
         }
 
-        // Convert ImageData to local after image is saved
-        public void convert_to_local () {
+        // Save full image to local
+        public void save_full_image (Gdk.Pixbuf full_pixbuf) {
 
             return_if_fail (!is_local);
+            string filepath = Application.storage_path + "/" + this.filename;
 
-            this.is_local = true;
-            this.full_url = Application.storage_path + "/" + this.filename;
+            try {
+                full_pixbuf.save (filepath, "jpeg");
+                this.is_local = true;
+                this.full_url = Application.storage_path + "/" + this.filename;
+            } catch (Error e) {
+                warning ("%s\n", e.message);
+            }
         }
     }
 }
