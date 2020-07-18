@@ -1,8 +1,9 @@
 [Desktop Entry]
-Name=Nice Bing Wallpaper
-Comment=Download wallpapers from Bing
+Name=Bingle
+Comment=A simple wallpaper downloader
 Categories=Utility;
-Exec=nice-bing-wallpaper
-Icon=application-default-icon
+Exec=io.github.coslyk.bingle
+Icon=io.github.coslyk.bingle
+StartupWMClass=io.github.coslyk.bingle
 Terminal=false
 Type=Application
