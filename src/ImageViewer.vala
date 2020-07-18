@@ -44,6 +44,15 @@ namespace Bingle {
                     _save_button.hide ();
                     break;
 
+                    case ACTION_USE:
+                    if (!_image_data.is_local) {
+                        _image_data.save_full_image (_full_pixbuf);
+                        headerbar.subtitle += " - saved";
+                        _save_button.hide ();
+                    }
+                    DesktopService.set_wallpaper (_image_data.full_url);
+                    break;
+
                     case Gtk.ResponseType.DELETE_EVENT:
                     case Gtk.ResponseType.CANCEL:
                     _full_pixbuf = null;
