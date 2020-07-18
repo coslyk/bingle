@@ -20,7 +20,7 @@ namespace Bingle {
                 this.icon = new Gdk.Pixbuf.from_resource ("/io/github/coslyk/bingle/logo.png");
             } catch (Error e) {
                 warning ("%s\n", e.message);
-			}
+            }
 
             var stack = new Gtk.Stack ();
 
