@@ -1,4 +1,5 @@
 app: bingle
+binpatch: true
 
 ingredients:
   dist: xenial
