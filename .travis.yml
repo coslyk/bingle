@@ -1,0 +1,17 @@
+ 
+language: c
+dist: xenial
+
+# Install dependencies
+addons:
+  apt:
+    packages:
+      - libgtk-3-dev
+      - libjson-glib-dev
+      - libsoup2.4-dev
+      - meson
+    update: true
+
+script:
+  - meson build
+  - ninja -C build
