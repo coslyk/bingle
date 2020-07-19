@@ -8,6 +8,7 @@ namespace Bingle.DesktopService {
         DEEPIN
     }
 
+    // Get desktop environment type
     public DEType get_de_type () {
 
         unowned string session_name = Environment.get_variable ("DESKTOP_SESSION");
@@ -25,6 +26,7 @@ namespace Bingle.DesktopService {
         }
     }
 
+    // Set wallpaper
     public void set_wallpaper (string filepath) {
         DEType de = get_de_type ();
         
@@ -51,5 +53,12 @@ namespace Bingle.DesktopService {
         } catch (SpawnError e) {
             warning ("%s\n", e.message);
         }
+    }
+
+    // Get program path
+    private char _program_path[500];
+    public unowned string get_program_path () {
+        Posix.readlink ("/proc/self/exe", _program_path);
+        return (string) _program_path;
     }
 }

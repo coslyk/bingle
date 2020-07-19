@@ -47,9 +47,9 @@ namespace Bingle {
             if (_about_dialog == null) {
                 try {
                     _about_dialog = new Gtk.AboutDialog () {
-                        authors = new string[] { "coslyk", null },
+                        authors = {"coslyk"},
                         comments = _("A simple wallpaper downloader"),
-                        copyright = "2020 coslyk",
+                        copyright = "Copyright © 2020 coslyk",
                         license_type = Gtk.License.MIT_X11,
                         logo = new Gdk.Pixbuf.from_resource ("/io/github/coslyk/bingle/logo.png"),
                         program_name = "Bingle",
@@ -79,6 +79,12 @@ namespace Bingle {
         }
         
         public static int main (string[] args) {
+
+            // Fix i18n in AppImage
+            string dirname = DesktopService.get_program_path ().replace ("/bin/io.github.coslyk.bingle", "/share/locale");
+            Intl.bindtextdomain ("io.github.coslyk.bingle", dirname);
+
+            // Run App
             var app = new Application ();
             return app.run (args);
         }
