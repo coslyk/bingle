@@ -16,7 +16,8 @@ namespace Bingle {
 
         construct {
             // Get wallpaper of this week
-            unowned string url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=7&pid=hp&mkt=zh-CN";
+            string lang = Environment.get_variable ("LANG").split (".")[0].replace ("_", "-");
+            string url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=7&pid=hp&mkt=" + lang;
             var msg = new Soup.Message ("GET", url);
             Application.network_session.queue_message (msg, on_parse_json);
         }
