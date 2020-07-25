@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.coslyk.bingle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 18:30+0200\n"
+"POT-Creation-Date: 2020-07-25 18:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: src/AboutDialog.vala:9
+msgid "A simple wallpaper downloader"
+msgstr ""
+
 #. Set menu
-#: src/Application.vala:37
+#: src/Application.vala:36
 msgid "About"
 msgstr ""
 
-#: src/Application.vala:38
+#: src/Application.vala:37
 msgid "Quit"
-msgstr ""
-
-#: src/Application.vala:51
-msgid "A simple wallpaper downloader"
 msgstr ""
 
 #: src/ImageViewer.vala:28

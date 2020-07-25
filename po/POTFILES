@@ -1,3 +1,4 @@
+src/AboutDialog.vala
 src/Application.vala
 src/ImageViewer.vala
 src/MainWindow.vala

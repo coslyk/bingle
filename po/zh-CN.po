@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.coslyk.bingle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 18:30+0200\n"
-"PO-Revision-Date: 2020-07-18 18:30+0200\n"
+"POT-Creation-Date: 2020-07-25 18:32+0200\n"
+"PO-Revision-Date: 2020-07-25 18:32+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
 
+#: src/AboutDialog.vala:9
+msgid "A simple wallpaper downloader"
+msgstr "一个简易的壁纸下载器"
+
 #. Set menu
-#: src/Application.vala:37
+#: src/Application.vala:36
 msgid "About"
 msgstr "关于"
 
-#: src/Application.vala:38
+#: src/Application.vala:37
 msgid "Quit"
 msgstr "退出"
-
-#: src/Application.vala:51
-msgid "A simple wallpaper downloader"
-msgstr "一个简易的壁纸下载器"
 
 #: src/ImageViewer.vala:28
 msgid "Use"
@@ -40,7 +40,7 @@ msgstr "保存"
 
 #: src/ImageViewer.vala:43 src/ImageViewer.vala:50
 msgid " - saved"
-msgstr "- 已保存"
+msgstr " - 已保存"
 
 #: src/ImageViewer.vala:117
 msgid "- saved"

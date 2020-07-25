@@ -20,6 +20,7 @@ asresources = gnome.compile_resources(
 # Create a new executable, list the files we want to compile, list the dependencies we need
 executable(
     meson.project_name(),
+    'src/AboutDialog.vala',
     'src/Application.vala',
     'src/DesktopService.vala',
     'src/Provider.vala',
