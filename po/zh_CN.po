@@ -1,4 +1,4 @@
-# Language zh-CN translations for io.github.coslyk.bingle package.
+# Chinese translations for io.github.coslyk.bingle package.
 # Copyright (C) 2020 THE io.github.coslyk.bingle'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the io.github.coslyk.bingle package.
 # Automatically generated, 2020.
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.coslyk.bingle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-25 18:32+0200\n"
-"PO-Revision-Date: 2020-07-25 18:32+0200\n"
+"POT-Creation-Date: 2020-07-26 14:47+0200\n"
+"PO-Revision-Date: 2020-07-26 14:48+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: zh_CN\n"
@@ -38,13 +38,9 @@ msgstr "使用"
 msgid "Save"
 msgstr "保存"
 
-#: src/ImageViewer.vala:43 src/ImageViewer.vala:50
+#: src/ImageViewer.vala:43 src/ImageViewer.vala:50 src/ImageViewer.vala:117
 msgid " - saved"
 msgstr " - 已保存"
-
-#: src/ImageViewer.vala:117
-msgid "- saved"
-msgstr "- 已保存"
 
 #: src/MainWindow.vala:28
 msgid "Online"

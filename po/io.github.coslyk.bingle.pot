@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.coslyk.bingle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-25 18:32+0200\n"
+"POT-Creation-Date: 2020-07-26 14:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,12 +38,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/ImageViewer.vala:43 src/ImageViewer.vala:50
+#: src/ImageViewer.vala:43 src/ImageViewer.vala:50 src/ImageViewer.vala:117
 msgid " - saved"
-msgstr ""
-
-#: src/ImageViewer.vala:117
-msgid "- saved"
 msgstr ""
 
 #: src/MainWindow.vala:28

@@ -114,7 +114,7 @@ namespace Bingle {
                     // Set subtitle
                     int img_width = _full_pixbuf.width;
                     int img_height = _full_pixbuf.height;
-                    headerbar.subtitle = @"$(img_width)x$(img_height)" +  _("- saved");
+                    headerbar.subtitle = @"$(img_width)x$(img_height)" +  _(" - saved");
                 }
                 catch (Error e) {
                     warning ("%s\n", e.message);
