@@ -5,7 +5,7 @@ Download and manage wallpapers from Bing.
 
 ### Homepage
 
-The homepage of Bingle is: https://coslyk.github.io/bingle/
+The homepage of Bingle is: https://coslyk.github.io/bingle.html
 
 Here is the development page of this project. For the program usage information, please visit the homepage.
 
